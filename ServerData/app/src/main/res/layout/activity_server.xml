@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+     <TextView
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_gravity="center"
+         android:background="#fae5e5"
+         android:text="Enter Player Info"
+         android:textSize="25sp" />
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/cname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Club Name"
+                android:textSize="25sp" />
+
+            <EditText
+                android:id="@+id/Ecname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/cname"
+                android:maxLines="1"
+                android:textSize="25sp"
+
+                />
+
+            <TextView
+                android:id="@+id/pname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/cname"
+                android:layout_marginTop="10dp"
+                android:text="Player Name"
+                android:textSize="25sp" />
+
+            <EditText
+                android:id="@+id/Epname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/cname"
+                android:layout_toRightOf="@+id/pname"
+                android:maxLines="1"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/goal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/pname"
+                android:layout_marginTop="10dp"
+                android:text="Goals"
+                android:textSize="25sp" />
+
+            <EditText
+                android:id="@+id/Egoal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/pname"
+                android:layout_toRightOf="@+id/goal"
+                android:maxLines="1"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/assists"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/goal"
+                android:layout_marginTop="10dp"
+                android:text="Assists"
+                android:textSize="25sp" />
+
+            <EditText
+                android:id="@+id/Eassists"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/goal"
+                android:layout_toRightOf="@+id/goal"
+                android:maxLines="1"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/Shots"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/assists"
+                android:layout_marginTop="10dp"
+                android:text="Shots"
+                android:textSize="25sp" />
+
+            <EditText
+                android:id="@+id/EShots"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/assists"
+                android:layout_toRightOf="@+id/assists"
+                android:maxLines="1"
+                android:textSize="25sp" />
+
+            <TextView 
+                android:id="@+id/gamestarted"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/Shots"
+                android:layout_marginTop="10dp"
+                android:text="gamestarted"
+                android:textSize="25sp" />
+
+            <EditText
+                android:id="@+id/Egamestarted"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/Shots"
+                android:layout_toRightOf="@+id/gamestarted"
+                android:maxLines="1"
+                android:textSize="25sp" />
+
+
+            <TextView
+                android:id="@+id/ycard"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/gamestarted"
+                android:layout_marginTop="10dp"
+                android:text="Y Card"
+                android:textSize="25sp" />
+
+            <EditText
+                android:id="@+id/Eycard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/gamestarted"
+                android:layout_toRightOf="@+id/ycard"
+                android:maxLines="1"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/Rcard"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ycard"
+                android:layout_marginTop="10dp"
+                android:text="R Card"
+                android:textSize="25sp" />
+
+            <EditText
+                android:id="@+id/ERcard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ycard"
+                android:layout_toRightOf="@+id/ycard"
+                android:maxLines="1"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/mplayed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/Rcard"
+                android:layout_marginTop="10dp"
+                android:text="m Played"
+                android:textSize="25sp" />
+
+            <EditText
+                android:id="@+id/Emplayed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/Rcard"
+                android:layout_toRightOf="@+id/mplayed"
+                android:maxLines="1"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/ShotsOnGoal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/mplayed"
+                android:layout_marginTop="10dp"
+                android:text="ShotsOnGoal"
+                android:textSize="25sp" />
+
+            <EditText
+                android:id="@+id/EShotsOnGoal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/mplayed"
+                android:layout_toRightOf="@+id/ShotsOnGoal"
+                android:maxLines="1"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/games"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ShotsOnGoal"
+                android:layout_marginTop="10dp"
+                android:text="Games Played"
+                android:textSize="25sp" />
+
+            <EditText
+                android:id="@+id/Egames"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ShotsOnGoal"
+                android:layout_toRightOf="@+id/games"
+                android:maxLines="1"
+                android:textSize="25sp" />
+
+            <Button
+                android:layout_marginTop="10dp"
+                android:id="@+id/refill"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/games"
+                android:layout_marginLeft="50dp"
+                android:text="Refill" />
+
+            <Button
+                android:layout_marginTop="10dp"
+                android:id="@+id/submit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/games"
+                android:layout_marginLeft="100dp"
+                android:layout_toRightOf="@+id/refill"
+                android:text="Submit" />
+
+        </RelativeLayout>
+    </ScrollView>
+</LinearLayout>

@@ -19,7 +19,7 @@ public class FarmersPostFrame extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.recyclerview_for_post, null);
         recyclerView = view.findViewById(R.id.recyclerView);
-
+system.out.println("This is the remote changes i made on my another github");
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 }

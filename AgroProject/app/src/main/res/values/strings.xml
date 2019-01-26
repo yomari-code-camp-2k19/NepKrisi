@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" >AgroProject</string>
+    <string name="app_name">AgroProject</string>
     <string name="btn_name">Order Now</string>
     <string name="name"> Your Name</string>
     <string name="contact">Your Contact Number</string>

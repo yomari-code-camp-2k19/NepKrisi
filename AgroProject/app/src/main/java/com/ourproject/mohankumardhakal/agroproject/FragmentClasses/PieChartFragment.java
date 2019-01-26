@@ -21,7 +21,6 @@ public class PieChartFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.graph_layout, null);
         pieChart = view.findViewById(R.id.pieChart);
-        List<>
         return view;
     }
 }

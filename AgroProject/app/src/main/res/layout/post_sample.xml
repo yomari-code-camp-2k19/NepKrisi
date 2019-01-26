@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    android:elevation="50dp"
-    android:background="#f4f3f3"
+
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="15dp"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".AcitivityClasses.MainActivity">
 
     <LinearLayout
+        android:background="@drawable/border_bg"
+        android:elevation="50dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">

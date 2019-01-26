@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".AcitivityClasses.MainActivity">
+
+        </activity>
+        <activity android:name=".AcitivityClasses.GraphActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

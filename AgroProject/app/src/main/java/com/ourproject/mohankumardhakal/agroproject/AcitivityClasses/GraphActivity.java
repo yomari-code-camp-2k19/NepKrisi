@@ -1,6 +1,4 @@
 package com.ourproject.mohankumardhakal.agroproject.AcitivityClasses;
-
-import android.app.Dialog;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,22 +6,20 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
-
-import com.ourproject.mohankumardhakal.agroproject.FragmentClasses.CustomerPostsFrame;
 import com.ourproject.mohankumardhakal.agroproject.FragmentClasses.PieSupplyChartFragment;
+import com.ourproject.mohankumardhakal.agroproject.FragmentClasses.PieDemandChartFragment;
 import com.ourproject.mohankumardhakal.agroproject.R;
 
-public class MainActivity extends AppCompatActivity {
+public class GraphActivity extends AppCompatActivity {
     ViewPager pager;
     TextView tv1, tv2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_graph);
         pager = findViewById(R.id.container);
         tv1 = findViewById(R.id.tab1);
         tv2 = findViewById(R.id.tab2);
@@ -39,9 +35,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onPageSelected(int position) {
                 if (position == 0) {
-                    tv1.setBackgroundColor(Color.CYAN);
                 } else if (position == 1) {
-                    tv2.setBackgroundColor(Color.YELLOW);
                 }
             }
 
@@ -56,19 +50,16 @@ public class MainActivity extends AppCompatActivity {
     public void tabClick(View view) {
         if (view.getId() == R.id.tab1) {
             pager.setCurrentItem(0);
+            tv1.setBackgroundColor(Color.CYAN);
+            tv2.setBackgroundColor(Color.WHITE);
         } else if (view.getId() == R.id.tab2) {
             pager.setCurrentItem(1);
+            tv2.setBackgroundColor(Color.YELLOW);
+            tv1.setBackgroundColor(Color.WHITE);
+
         }
     }
 
-    //dialog to pop up to ask for content with farmers by customer
-    public void showPopUp(View v) {
-        Dialog dialog = new Dialog(this, R.style.Dialog);
-        dialog.setTitle("Request Here");
-        View view = LayoutInflater.from(this).inflate(R.layout.product_request_dialog, null);
-        dialog.setContentView(view);
-        dialog.show();
-    }
 
     //viewpageadapter inner class to hold different fragment
     private class ViewPagerAdapter extends FragmentPagerAdapter {
@@ -85,9 +76,9 @@ public class MainActivity extends AppCompatActivity {
 //                farmersPostFrame.setArguments(sendDatatoFragment());
                 return pieSupplyChartFragment;
             } else {
-                CustomerPostsFrame customerPostsFrame = new CustomerPostsFrame();
+                PieDemandChartFragment pieDemandChartFragment = new PieDemandChartFragment();
 //                customerPostsFrame.setArguments(sendDatatoFragment());
-                return customerPostsFrame;
+                return pieDemandChartFragment;
 
             }
 
@@ -105,3 +96,4 @@ public class MainActivity extends AppCompatActivity {
         return bundle;
     }*/
 }
+

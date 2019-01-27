@@ -22,7 +22,7 @@ public class GraphActivity extends AppCompatActivity {
         setContentView(R.layout.activity_graph);
         pager = findViewById(R.id.container);
         tv1 = findViewById(R.id.tab1);
-        tv2 = findViewById(R.id.tab2);
+        tv2 = findViewById( R.id.tab2);
         //setsAdapter for different fragments
         pager.setAdapter(new ViewPagerAdapter(getSupportFragmentManager()));
         pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {

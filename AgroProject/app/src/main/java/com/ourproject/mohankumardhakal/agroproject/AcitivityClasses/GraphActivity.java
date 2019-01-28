@@ -1,4 +1,5 @@
 package com.ourproject.mohankumardhakal.agroproject.AcitivityClasses;
+
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,8 +9,9 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
-import com.ourproject.mohankumardhakal.agroproject.FragmentClasses.PieSupplyChartFragment;
+
 import com.ourproject.mohankumardhakal.agroproject.FragmentClasses.PieDemandChartFragment;
+import com.ourproject.mohankumardhakal.agroproject.FragmentClasses.PieSupplyChartFragment;
 import com.ourproject.mohankumardhakal.agroproject.R;
 
 public class GraphActivity extends AppCompatActivity {

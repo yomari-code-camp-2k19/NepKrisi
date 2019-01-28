@@ -9,16 +9,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AcitivityClasses.MainActivity">
 
-        </activity>
-        <activity android:name=".AcitivityClasses.GraphActivity">
-            <intent-filter>
+
+
+    <activity android:name=".AcitivityClasses.MainActivity">
+        <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".AcitivityClasses.Farmer_login"></activity>
+        <activity android:name=".AcitivityClasses.Register_farmer"></activity>
+        <activity android:name=".AcitivityClasses.Farmer_profile_form"></activity>
+
+
+        <activity android:name=".AcitivityClasses.Customer_signin"></activity>
+        <activity android:name=".AcitivityClasses.Register_customer"></activity>
+
+        <activity android:name=".AcitivityClasses.Application_main"></activity>
+
     </application>
 
 </manifest>

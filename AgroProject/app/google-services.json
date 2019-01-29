@@ -1,0 +1,94 @@
+{
+  "project_info": {
+    "project_number": "325159950505",
+    "firebase_url": "https://agroproject-b9829.firebaseio.com",
+    "project_id": "agroproject-b9829",
+    "storage_bucket": "agroproject-b9829.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:325159950505:android:6ac4a53ee8397ad0",
+        "android_client_info": {
+          "package_name": "com.ourproject.mohankumardhakal.agroproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "325159950505-stc5urnva2tlllrj5vm9tk6vt8q8gsvh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ourproject.mohankumardhakal.agroproject",
+            "certificate_hash": "2394f642dbe65d781d45844a4657edbcd56bb6d6"
+          }
+        },
+        {
+          "client_id": "325159950505-tec69l3789hhqpcap39amq3vjovuogeh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ourproject.mohankumardhakal.agroproject",
+            "certificate_hash": "5fc6ca347d9034f1459c9971b8518d217c0dc402"
+          }
+        },
+        {
+          "client_id": "325159950505-q8v3llrrgrpgamp2hnj1mlts4t485b22.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDb1ajZ0ELXxI6Y6PbQv_13GRE4nTapnb8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "325159950505-q8v3llrrgrpgamp2hnj1mlts4t485b22.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:325159950505:android:d0058f4855b2734a",
+        "android_client_info": {
+          "package_name": "team404.com"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "325159950505-q8v3llrrgrpgamp2hnj1mlts4t485b22.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDb1ajZ0ELXxI6Y6PbQv_13GRE4nTapnb8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

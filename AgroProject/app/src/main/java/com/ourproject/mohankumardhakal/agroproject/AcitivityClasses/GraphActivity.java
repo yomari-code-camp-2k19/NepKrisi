@@ -11,7 +11,6 @@ import android.widget.TextView;
 import com.ourproject.mohankumardhakal.agroproject.FragmentClasses.PieSupplyChartFragment;
 import com.ourproject.mohankumardhakal.agroproject.FragmentClasses.PieDemandChartFragment;
 import com.ourproject.mohankumardhakal.agroproject.R;
-
 public class GraphActivity extends AppCompatActivity {
     ViewPager pager;
     TextView tv1, tv2;

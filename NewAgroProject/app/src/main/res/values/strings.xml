@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">AgroProject</string>
+    <string name="btn_name">Order Now</string>
+    <string name="name"> Your Name</string>
+    <string name="contact">Your Contact Number</string>
+    <string name="qty">Quantiy you want</string>
+    <string name="submit">Submit</string>
+    <string name="cancel">Cancel</string>
+</resources>

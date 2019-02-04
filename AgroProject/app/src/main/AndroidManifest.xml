@@ -9,6 +9,7 @@
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -16,15 +17,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AcitivityClasses.MainActivity" />
-        <activity android:name=".AcitivityClasses.GraphActivity"></activity>
-        <activity android:name=".TestPackage.MapActivity" >
+
+        <activity android:name=".AcitivityClasses.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".AcitivityClasses.GraphActivity" />
+        <activity android:name=".TestPackage.MapActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -39,19 +40,16 @@
 
         <activity
             android:name=".TestPackage.MapsActivity"
-            android:label="@string/title_activity_maps">
-
-        </activity>
+            android:label="@string/title_activity_maps" />
         <activity android:name=".AcitivityClasses.Farmer_login"></activity>
-        <activity android:name=".AcitivityClasses.Register_farmer"></activity>
-        <activity android:name=".AcitivityClasses.Farmer_profile_form"></activity>
-
-
+        <activity android:name=".AcitivityClasses.Register_farmer" />
+        <activity android:name=".AcitivityClasses.Farmer_profile_form" />
         <activity android:name=".AcitivityClasses.Customer_signin"></activity>
-        <activity android:name=".AcitivityClasses.Register_customer"></activity>
-
+        <activity android:name=".AcitivityClasses.Register_customer" />
         <activity android:name=".AcitivityClasses.Application_main"></activity>
-
+        <activity android:name=".AcitivityClasses.FarmersCreatePost" />
+        <activity android:name=".AcitivityClasses.CustomerCreatePost" />
+        <activity android:name=".AcitivityClasses.FarmersProfile"></activity>
     </application>
 
 </manifest>

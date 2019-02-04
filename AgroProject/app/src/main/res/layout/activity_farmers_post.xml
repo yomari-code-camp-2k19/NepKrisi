@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/farmers">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@mipmap/farmers"
+        android:orientation="vertical"
+        tools:context=".AcitivityClasses.FarmersCreatePost">
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/idCardView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_marginTop="20dp"
+            app:cardCornerRadius="5dp">
+
+            <fragment
+                android:id="@+id/place_autocomplete_fragment"
+                android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </android.support.v7.widget.CardView>
+
+        <ImageButton
+            android:id="@+id/imageBtn"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_margin="10dp"
+            android:adjustViewBounds="true"
+            android:background="@mipmap/add_image"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/add_image" />
+
+        <EditText
+            android:id="@+id/textTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/edit_text_style"
+            android:hint="Post Title"
+            android:padding="10dp" />
+
+        <EditText
+            android:id="@+id/textDesc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/edit_text_style"
+            android:elevation="40dp"
+            android:hint="Post Description"
+            android:padding="10dp"
+            android:textColor="#19191a"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Your Selected Location"
+            android:id="@+id/myLocation"
+            android:background="@drawable/edit_text_style"
+            android:drawableLeft="@drawable/ic_add_location_black_24dp"
+            android:elevation="40dp"
+            android:padding="10dp"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/postBtn"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/create_post_btn"
+            android:elevation="20dp"
+            android:text="Post"
+            android:textStyle="bold" />
+    </LinearLayout>
+</ScrollView>

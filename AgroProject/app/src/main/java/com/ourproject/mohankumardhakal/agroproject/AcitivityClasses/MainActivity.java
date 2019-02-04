@@ -24,14 +24,16 @@ public class MainActivity extends AppCompatActivity {
         bfarmer.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent myIntent = new Intent(view.getContext(), Farmer_login.class);
-                startActivityForResult(myIntent, 0);
+                startActivity(myIntent);
+                finish();
             }
         });
 
         bcustomer.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent myIntent = new Intent(view.getContext(), Customer_signin.class);
-                startActivityForResult(myIntent, 0);
+                startActivity(myIntent);
+                finish();
             }
         });
 

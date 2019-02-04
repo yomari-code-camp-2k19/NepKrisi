@@ -17,14 +17,6 @@
         android:id="@+id/textView4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Please fill the following form."
-        android:gravity="left"
-        android:layout_marginBottom="20dp"/>
-
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:text="Firstname"
         android:gravity="left"
         android:layout_marginTop="10dp"/>
@@ -76,7 +68,7 @@
         android:gravity="left"/>
 
     <EditText
-        android:id="@+id/editText4"
+        android:id="@+id/pan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -138,7 +130,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="Say something about your farm"
-        android:gravity="left"/>
+        android:layout_gravity="right"/>
 
     <EditText
         android:id="@+id/aboutfarm"
@@ -146,6 +138,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:inputType="textMultiLine" />
+
+    <Button
+        android:id="@+id/submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="SUBMIT"
+        android:layout_margin="20dp"/>
 
 </LinearLayout>
 </ScrollView>

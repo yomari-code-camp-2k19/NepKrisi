@@ -15,6 +15,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.ourproject.mohankumardhakal.agroproject.R;
 
 public class Customer_signin extends AppCompatActivity {
@@ -27,21 +28,35 @@ public class Customer_signin extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_signin);
-
         firebaseAuth = FirebaseAuth.getInstance();
         email_text = findViewById(R.id.email_check);
         password_text = findViewById(R.id.password_check);
         sign_in = findViewById(R.id.sign_in);
         signup = findViewById(R.id.sign_up);
-
         sign_in.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 sign_in();
             }
         });
+
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        String uid = getIntent().getStringExtra("uid");
+        if (uid != null) {
+            firebaseAuth = FirebaseAuth.getInstance();
+            FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+            if (firebaseUser.getUid() == uid) {
+
+            }
+        } else {
+            Intent intent = new Intent(Customer_signin.this, CustomerCreatePost.class);
+            startActivity(intent);
+        }
+    }
 
     private void sign_in() {
         String email = email_text.getText().toString();
@@ -60,10 +75,11 @@ public class Customer_signin extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    Toast.makeText(getApplication(), "Successfully logged in", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(Customer_signin.this, CustomerCreatePost.class);
+                    startActivity(intent);
+                    finish();
                 } else {
                     Toast.makeText(getApplication(), "Email and password not correct ot unregistered. Please check and continue", Toast.LENGTH_SHORT).show();
-
                 }
             }
         });

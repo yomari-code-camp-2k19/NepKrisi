@@ -1,5 +1,4 @@
 package com.ourproject.mohankumardhakal.agroproject.AcitivityClasses;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,28 +17,22 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.ourproject.mohankumardhakal.agroproject.R;
-
 public class Register_customer extends AppCompatActivity {
     EditText emailview, passwordview;
     Button registerbtn;
     private ProgressDialog progressDialog;
-
-   private FirebaseAuth firebaseAuth;
+    private FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        FirebaseApp.initializeApp(this);
-
-
         emailview = findViewById(R.id.email);
         passwordview = findViewById(R.id.password);
         registerbtn = findViewById(R.id.register);
-
         progressDialog = new ProgressDialog(this);
-        FirebaseApp.initializeApp(this);        firebaseAuth = FirebaseAuth.getInstance();
-
+        FirebaseApp.initializeApp(this);
+        firebaseAuth = FirebaseAuth.getInstance();
         registerbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -50,8 +43,7 @@ public class Register_customer extends AppCompatActivity {
         });
     }
 
-    private void register(final View view)
-    {
+    private void register(final View view) {
         String email = emailview.getText().toString();
         String password = passwordview.getText().toString();
 
@@ -70,9 +62,9 @@ public class Register_customer extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    progressDialog.hide();
+                    progressDialog.dismiss();
                     Toast.makeText(getApplication(), "Successfully Registered", Toast.LENGTH_SHORT).show();
-                    Intent myIntent = new Intent(view.getContext(), Application_main.class);
+                    Intent myIntent = new Intent(view.getContext(), Customer_signin.class);
                     startActivityForResult(myIntent, 0);
 
                 } else {
@@ -81,4 +73,5 @@ public class Register_customer extends AppCompatActivity {
             }
 
         });
-    }}
+    }
+}

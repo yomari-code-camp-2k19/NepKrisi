@@ -30,7 +30,6 @@ import java.util.Locale;
 
 public class MapActivity extends AppCompatActivity implements LocationListener {
     protected LocationManager locationManager;
-    protected Context context;
     TextView currentPlace;
     double lat1, lat2, long1, long2;
     String pointA = "", pointB = "";
@@ -43,7 +42,7 @@ public class MapActivity extends AppCompatActivity implements LocationListener {
         final TextView txtVw = findViewById(R.id.placeName);
         currentPlace = findViewById(R.id.currentPlace);
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        distance=findViewById(R.id.distance);
+        distance = findViewById(R.id.distance);
         //checks if permission isn't granted
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             /* TODO: Consider calling
@@ -77,7 +76,7 @@ public class MapActivity extends AppCompatActivity implements LocationListener {
                 Log.v("Longitude1 is", "" + queriedLocation.longitude);
                 setLatLong(queriedLocation.latitude, queriedLocation.latitude, 0, String.valueOf(place.getName()));
                 txtVw.setText(place.getName());
-                distance.setText(String.valueOf(calculateDistance()/1000));
+                distance.setText(String.valueOf(calculateDistance() / 1000));
             }
 
 
@@ -90,8 +89,6 @@ public class MapActivity extends AppCompatActivity implements LocationListener {
 
     @Override
     public void onLocationChanged(Location location) {
-        Log.v("Latitude2 is", "" + location.getLatitude());
-        Log.v("Longitude2 is", "" + location.getLongitude());
         String mylocation = getCurrentLocationName(location.getLatitude(), location.getLongitude());
         currentPlace.setText(mylocation);
         setLatLong(location.getLatitude(), location.getLongitude(), 1, mylocation);
@@ -119,7 +116,9 @@ public class MapActivity extends AppCompatActivity implements LocationListener {
         if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                 locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, MapActivity.this);
-            }
+                Log.i("Permission Requestd", "permission grandted");
+            } else Log.i("Permission Requestd", "permission not grandted");
+
         }
     }
 

@@ -5,18 +5,30 @@ import android.content.Context;
 import android.location.Location;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 import com.ourproject.mohankumardhakal.agroproject.R;
 
 import java.util.ArrayList;
+
+import static android.support.constraint.Constraints.TAG;
 
 //adpater class for farmers post
 public class PostAdapters extends RecyclerView.Adapter<PostAdapters.MyViewHolder> {
@@ -25,6 +37,7 @@ public class PostAdapters extends RecyclerView.Adapter<PostAdapters.MyViewHolder
     Context context;
     View view;
     int index;
+    String token;
     public final static double AVERAGE_RADIUS_OF_EARTH_KM = 6371;
 
     //for customers data
@@ -49,7 +62,7 @@ public class PostAdapters extends RecyclerView.Adapter<PostAdapters.MyViewHolder
 
 
     @Override
-    public void onBindViewHolder(@NonNull PostAdapters.MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final PostAdapters.MyViewHolder holder, int position) {
         if (index == 1) {
             info = post_information_list.get(position);
             holder.post_title.setText(info.getPost_title());
@@ -67,7 +80,7 @@ public class PostAdapters extends RecyclerView.Adapter<PostAdapters.MyViewHolder
                 @Override
                 public void onClick(View v) {
 
-                    showPopUp(v,info.getUser_id());
+                    showPopUp(v, info.getUser_id(), info.getPost_id(),info.getPost_location());
 
                 }
             });
@@ -91,6 +104,7 @@ public class PostAdapters extends RecyclerView.Adapter<PostAdapters.MyViewHolder
                 post_desc = view.findViewById(R.id.post_desc);
                 location = view.findViewById(R.id.postedFrom);
             } else {
+
                 post_title = view.findViewById(R.id.post_title);
                 post_desc = view.findViewById(R.id.post_desc);
                 location = view.findViewById(R.id.post_location);
@@ -109,13 +123,13 @@ public class PostAdapters extends RecyclerView.Adapter<PostAdapters.MyViewHolder
     }
 
     //dialog to pop up to ask for content with farmers by customer
-    public void showPopUp(View v,String user_id) {
-
-        Dialog dialog = new Dialog(context, R.style.Dialog);
+    public void showPopUp(View v, final String user_id, final String post_id,final String location) {
+        final Dialog dialog = new Dialog(context, R.style.Dialog);
         dialog.setTitle("Request Here");
         View view = LayoutInflater.from(context).inflate(R.layout.product_request_dialog, null);
         dialog.setContentView(view);
         dialog.show();
+        dialog.setCancelable(false);
         final EditText name, contact, qty;
         name = view.findViewById(R.id.name);
         contact = view.findViewById(R.id.contact);
@@ -125,11 +139,37 @@ public class PostAdapters extends RecyclerView.Adapter<PostAdapters.MyViewHolder
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String name_value, contact_value, qty_value;
-                name_value = name.getText().toString();
-                contact_value = contact.getText().toString();
-                qty_value = qty.getText().toString();
+                String name_value = name.getText().toString();
+                String contact_value = contact.getText().toString();
+                String qty_value = qty.getText().toString();
+                CustomerRequests customerRequests = new CustomerRequests(name_value, contact_value, qty_value, post_id,user_id,location);
+                FirebaseDatabase database = FirebaseDatabase.getInstance("https://agroproject-b9829.firebaseio.com/");
+                DatabaseReference dbRef = database.getInstance().getReference("Customer Request");
+                FirebaseAuth firebaseAuth=FirebaseAuth.getInstance();
+                String current_user_id=firebaseAuth.getUid();
+
+                dbRef.child(user_id).child(current_user_id).child(post_id).setValue(customerRequests).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(context, "Request to db with id" + user_id, Toast.LENGTH_SHORT).show();
+                            dialog.dismiss();
+                        } else {
+                            Toast.makeText(context, "request store denied see log", Toast.LENGTH_SHORT).show();
+                            Log.i("Error", task.getException().getMessage().toString());
+                        }
+                    }
+                });
+            }
+        });
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
             }
         });
     }
+
+
+
 }

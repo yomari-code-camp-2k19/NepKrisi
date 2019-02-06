@@ -1,4 +1,5 @@
 package com.ourproject.mohankumardhakal.agroproject.FragmentClasses;
+
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
@@ -19,6 +20,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -32,14 +34,16 @@ import java.util.ArrayList;
 
 public class FarmersPostFrame extends Fragment implements LocationListener {
     RecyclerView recyclerView;
+    private RecyclerView.Adapter mAdapter;
     FirebaseDatabase database;
     DatabaseReference dbRef;
     ArrayList<PostsAttributes> list;
-    private RecyclerView.Adapter mAdapter;
     protected LocationManager locationManager;
     private double lattitude, longitude;
     SwipeRefreshLayout refresher;
     View view;
+    String user_id;
+    FirebaseAuth firebaseAuth;
 
     @Nullable
     @Override
@@ -49,21 +53,28 @@ public class FarmersPostFrame extends Fragment implements LocationListener {
         recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
+        //database set up
         database = FirebaseDatabase.getInstance("https://agroproject-b9829.firebaseio.com/");
         dbRef = database.getInstance().getReference("Farmer Posts");
+        firebaseAuth = FirebaseAuth.getInstance();
+        user_id = firebaseAuth.getCurrentUser().getUid();
+        //location inilializer
+        locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
         list = new ArrayList<>();
         dbRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
-                for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                    PostsAttributes postsAttributes = ds.getValue(PostsAttributes.class);
-                    postsAttributes.setCurrent_lat(lattitude);
-                    postsAttributes.setCurrent_long(longitude);
-                    list.add(postsAttributes);
-                }
+
+                    for (DataSnapshot ds1 : dataSnapshot.getChildren()) {
+                        for (DataSnapshot ds2 : ds1.getChildren()) {
+                            PostsAttributes postsAttributes = ds2.getValue(PostsAttributes.class);
+                            postsAttributes.setCurrent_lat(lattitude);
+                            postsAttributes.setCurrent_long(longitude);
+                            list.add(postsAttributes);
+                        }
+                    }
                 mAdapter = new PostAdapters(getActivity(), list, 0);
                 recyclerView.setAdapter(mAdapter);
             }
@@ -74,7 +85,6 @@ public class FarmersPostFrame extends Fragment implements LocationListener {
                 Log.i("Error", "Failed to read value.", error.toException());
             }
         });
-
 
         //location related stuffs
         if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -89,7 +99,7 @@ public class FarmersPostFrame extends Fragment implements LocationListener {
         refresher.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-             clearRecyclerVIew();
+                clearRecyclerVIew();
                 refreshData();
                 refresher.setRefreshing(false);
             }
@@ -116,11 +126,14 @@ public class FarmersPostFrame extends Fragment implements LocationListener {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                    PostsAttributes postsAttributes = ds.getValue(PostsAttributes.class);
-                    postsAttributes.setCurrent_lat(lattitude);
-                    postsAttributes.setCurrent_long(longitude);
-                    list.add(postsAttributes);
+                    for (DataSnapshot ds1 : ds.getChildren()) {
+                        PostsAttributes postsAttributes = ds1.getValue(PostsAttributes.class);
+                        postsAttributes.setCurrent_lat(lattitude);
+                        postsAttributes.setCurrent_long(longitude);
+                        list.add(postsAttributes);
+                    }
                 }
+
                 mAdapter = new PostAdapters(getActivity(), list, 0);
                 mAdapter.notifyDataSetChanged();
                 recyclerView.setAdapter(mAdapter);
@@ -165,5 +178,4 @@ public class FarmersPostFrame extends Fragment implements LocationListener {
             }
         }
     }
-
 }

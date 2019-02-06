@@ -1,10 +1,10 @@
 package com.ourproject.mohankumardhakal.agroproject.AcitivityClasses;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,6 +16,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.ourproject.mohankumardhakal.agroproject.FragmentClasses.FarmersPostFrame;
 import com.ourproject.mohankumardhakal.agroproject.R;
 
 public class Customer_signin extends AppCompatActivity {
@@ -27,8 +28,15 @@ public class Customer_signin extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_customer_signin);
         firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+/*        if (firebaseUser != null) {
+            Log.i("tag", "came here");
+            Intent intent = new Intent(Customer_signin.this, Application_main.class);
+            startActivity(intent);
+            finish();
+        }
+ */       setContentView(R.layout.activity_customer_signin);
         email_text = findViewById(R.id.email_check);
         password_text = findViewById(R.id.password_check);
         sign_in = findViewById(R.id.sign_in);
@@ -39,23 +47,12 @@ public class Customer_signin extends AppCompatActivity {
                 sign_in();
             }
         });
-
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        String uid = getIntent().getStringExtra("uid");
-        if (uid != null) {
-            firebaseAuth = FirebaseAuth.getInstance();
-            FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
-            if (firebaseUser.getUid() == uid) {
-
-            }
-        } else {
-            Intent intent = new Intent(Customer_signin.this, CustomerCreatePost.class);
-            startActivity(intent);
-        }
+//        String uid = getIntent().getStringExtra("uid");
     }
 
     private void sign_in() {
@@ -75,7 +72,7 @@ public class Customer_signin extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    Intent intent = new Intent(Customer_signin.this, CustomerCreatePost.class);
+                    Intent intent = new Intent(Customer_signin.this, Application_main.class);
                     startActivity(intent);
                     finish();
                 } else {

@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -20,37 +21,41 @@ import com.ourproject.mohankumardhakal.agroproject.HelperClasses.PostsAttributes
 import com.ourproject.mohankumardhakal.agroproject.R;
 
 import java.util.ArrayList;
+
 public class CustomerPostsFrame extends Fragment {
     RecyclerView recyclerView;
-    FirebaseDatabase database;
+    FirebaseDatabase  database;
     DatabaseReference dbRef;
     String user_id;
+    FirebaseAuth firebaseAuth;
     ArrayList<PostsAttributes> list;
     private RecyclerView.Adapter mAdapter;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.recyclerview_for_post, null);
+        View view = inflater.inflate(R.layout.recyclerview_for_post, null);
         recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         list = new ArrayList<>();
-        //getting the user_id of logged in user
-//        user_id = getArguments().getString("user_id");
-        // Read from the database
+        //database initialization
+        firebaseAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance("https://agroproject-b9829.firebaseio.com/");
         dbRef = database.getInstance().getReference("Customer Posts");
+        user_id = firebaseAuth.getCurrentUser().getUid();
         dbRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                    PostsAttributes postsAttributes = ds.getValue(PostsAttributes.class);
-                    list.add(postsAttributes);
+                    for (DataSnapshot ds1 : ds.getChildren()) {
+                        PostsAttributes postsAttributes = ds1.getValue(PostsAttributes.class);
+                        list.add(postsAttributes);
+                    }
                 }
-                mAdapter = new PostAdapters(getActivity(), list,1);
+                mAdapter = new PostAdapters(getActivity(), list, 1);
                 recyclerView.setAdapter(mAdapter);
             }
 

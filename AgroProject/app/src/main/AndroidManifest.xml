@@ -17,12 +17,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".AcitivityClasses.Application_main">
 
-        <activity android:name=".AcitivityClasses.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".AcitivityClasses.GraphActivity" />
         <activity android:name=".TestPackage.MapActivity" />
@@ -41,15 +37,26 @@
         <activity
             android:name=".TestPackage.MapsActivity"
             android:label="@string/title_activity_maps" />
-        <activity android:name=".AcitivityClasses.Farmer_login"></activity>
+        <activity android:name=".AcitivityClasses.Farmer_login">
+
+        </activity>
         <activity android:name=".AcitivityClasses.Register_farmer" />
         <activity android:name=".AcitivityClasses.Farmer_profile_form" />
-        <activity android:name=".AcitivityClasses.Customer_signin"></activity>
+        <activity android:name=".AcitivityClasses.Customer_signin">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".AcitivityClasses.Register_customer" />
-        <activity android:name=".AcitivityClasses.Application_main"></activity>
         <activity android:name=".AcitivityClasses.FarmersCreatePost" />
         <activity android:name=".AcitivityClasses.CustomerCreatePost" />
         <activity android:name=".AcitivityClasses.FarmersProfile"></activity>
-    </application>
 
+        <service android:name=".TestPackage.MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+    </application>
 </manifest>

@@ -35,7 +35,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-
 public class CustomerCreatePost extends AppCompatActivity implements LocationListener{
     TextView title, desc, mylocation, customer_name;
     Button postBtn;
@@ -54,7 +53,7 @@ public class CustomerCreatePost extends AppCompatActivity implements LocationLis
         //database setup
         firebaseAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance("https://agroproject-b9829.firebaseio.com/");
-        dbRef = database.getInstance().getReference("Customer Posts");
+        dbRef = database.getInstance().getReference("Customer Posts/");
         user_id = firebaseAuth.getCurrentUser().getUid();
         email_value=firebaseAuth.getCurrentUser().getEmail();
         progressDialog = new ProgressDialog(this);
@@ -92,7 +91,7 @@ public class CustomerCreatePost extends AppCompatActivity implements LocationLis
         String desc_value = desc.getText().toString();
         String location_value = mylocation.getText().toString();
         PostsAttributes postsAttributes = new PostsAttributes(user_id,customer_post_id, title_value, desc_value, location_value, getDate(),email_value);
-        dbRef.child(user_id).setValue(postsAttributes).addOnCompleteListener(new OnCompleteListener<Void>() {
+        dbRef.child(user_id).child(customer_post_id).setValue(postsAttributes).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {

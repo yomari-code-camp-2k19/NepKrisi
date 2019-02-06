@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -64,10 +65,9 @@ public class FarmersCreatePost extends AppCompatActivity {
         sendbtn = findViewById(R.id.postBtn);
         //firebase initialization
         firebaseAuth = FirebaseAuth.getInstance();
-        user_id = firebaseAuth.getCurrentUser().getUid();
         email_value = firebaseAuth.getCurrentUser().getEmail();
         database = FirebaseDatabase.getInstance("https://agroproject-b9829.firebaseio.com/");
-        dbRef = database.getInstance().getReference("Farmer Posts");
+        dbRef = database.getInstance().getReference("Farmer Posts/");
         storageReference = FirebaseStorage.getInstance().getReference();
         //buttonlistners
         imageButton.setOnClickListener(new View.OnClickListener() {
@@ -182,13 +182,15 @@ public class FarmersCreatePost extends AppCompatActivity {
 
     //sends data to real time database including imageurl from storage
     public void sendDatatorealTimeDB(Uri downloaduri) {
+        user_id = firebaseAuth.getCurrentUser().getUid();
+        Log.i("Current user id", user_id);
         String post_id = dbRef.push().getKey();
         String title_value = title.getText().toString();
         String desc_value = description.getText().toString();
         String location = mylocation.getText().toString();
         //using helper class  to insert every posts
-        PostsAttributes postsAttributes = new PostsAttributes(user_id, post_id, title_value, desc_value, location, getDate(), downloaduri.toString(), lattitude, longitude,email_value);
-        dbRef.child(user_id).setValue(postsAttributes).addOnCompleteListener(new OnCompleteListener<Void>() {
+        PostsAttributes postsAttributes = new PostsAttributes(user_id, post_id, title_value, desc_value, location, getDate(), downloaduri.toString(), lattitude, longitude, email_value);
+        dbRef.child(user_id).child(post_id).setValue(postsAttributes).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {

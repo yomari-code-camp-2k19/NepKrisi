@@ -90,7 +90,7 @@ public class Farmer_login extends Activity {
                                 String fname = postSnapshot.child("farm_name").getValue(String.class);
                                 farm_name_s = farmname.getText().toString();
                                 if (fname.equals(farm_name_s)) {
-                                    Intent myIntent = new Intent(Farmer_login.this, FarmersCreatePost.class);
+                                    Intent myIntent = new Intent(Farmer_login.this, GraphActivity.class);
                                     startActivity(myIntent);
                                     finish();
                                     break;

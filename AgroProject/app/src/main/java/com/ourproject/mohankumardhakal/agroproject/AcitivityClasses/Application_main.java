@@ -1,4 +1,5 @@
 package com.ourproject.mohankumardhakal.agroproject.AcitivityClasses;
+
 import android.Manifest;
 import android.app.Dialog;
 import android.content.Context;
@@ -25,9 +26,11 @@ import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.ourproject.mohankumardhakal.agroproject.FragmentClasses.CustomerPostsFrame;
 import com.ourproject.mohankumardhakal.agroproject.FragmentClasses.FarmersPostFrame;
+import com.ourproject.mohankumardhakal.agroproject.FragmentClasses.PieSupplyChartFragment;
+import com.ourproject.mohankumardhakal.agroproject.FragmentClasses.TestFragment;
 import com.ourproject.mohankumardhakal.agroproject.R;
+
 public class Application_main extends AppCompatActivity implements LocationListener {
     ViewPager pager;
     TextView tv1, tv2;
@@ -48,9 +51,10 @@ public class Application_main extends AppCompatActivity implements LocationListe
         //logging out the user from main activity
         switch (id) {
             case R.id.menu:
-                Intent intent = new Intent(this, Customer_signin.class);
                 firebaseAuth = FirebaseAuth.getInstance();
                 FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+                firebaseAuth.signOut();
+                Intent intent = new Intent(this, Customer_signin.class);
                 user_id = firebaseUser.getUid();
                 intent.putExtra("uid", user_id);
                 startActivity(intent);
@@ -64,6 +68,10 @@ public class Application_main extends AppCompatActivity implements LocationListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.application_main);
         pager = findViewById(R.id.container);
+//        firebaseAuth = FirebaseAuth.getInstance();
+//        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+
+
         locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
         //getting the current location of the user
         //checks if permission isn't granted
@@ -74,7 +82,7 @@ public class Application_main extends AppCompatActivity implements LocationListe
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, Application_main.this);
         }
 
-        String name = getIntent().getStringExtra("Name");
+//        String name = getIntent().getStringExtra("Name");
         tv1 = findViewById(R.id.tab1);
         tv2 = findViewById(R.id.tab2);
         //setsAdapter for different fragments
@@ -155,15 +163,14 @@ public class Application_main extends AppCompatActivity implements LocationListe
         public Fragment getItem(int position) {
             if (position == 0) {
                 FarmersPostFrame farmersPostFrame = new FarmersPostFrame();
-                farmersPostFrame.setArguments(sendDatatoFragment(lattitude,longitude));
+                farmersPostFrame.setArguments(sendDatatoFragment(lattitude, longitude));
                 return farmersPostFrame;
             } else {
-                CustomerPostsFrame customerPostsFrame = new CustomerPostsFrame();
-                customerPostsFrame.setArguments(sendDatatoFragment(lattitude,longitude));
-                return customerPostsFrame;
-
+                PieSupplyChartFragment pieSupplyChartFragment= new PieSupplyChartFragment();
+//                CustomerRequestManager customerRequestManager = new CustomerRequestManager();
+//                customerPostsFrame.setArguments(sendDatatoFragment(lattitude, longitude));
+                return pieSupplyChartFragment;
             }
-
         }
 
         @Override
@@ -173,7 +180,7 @@ public class Application_main extends AppCompatActivity implements LocationListe
     }
 
     //function to send data to fragment
-    public Bundle sendDatatoFragment(double lattitude,double longitude) {
+    public Bundle sendDatatoFragment(double lattitude, double longitude) {
         Bundle bundle = new Bundle();
         bundle.putString("user_id", user_id);
         bundle.putDouble("longitude", longitude);

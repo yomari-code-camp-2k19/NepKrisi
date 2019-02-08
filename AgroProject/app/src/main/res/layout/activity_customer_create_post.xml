@@ -21,6 +21,17 @@
             android:textSize="20sp" />
 
         <EditText
+            android:id="@+id/yourName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/edit_text_style"
+            android:hint="Your Name"
+            android:padding="10dp" />
+
+        <EditText
             android:id="@+id/textTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -44,6 +55,18 @@
             android:padding="10dp"
             android:textColor="#19191a"
             android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/phoneNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/edit_text_style"
+            android:hint="Contact Number"
+            android:padding="10dp" />
+
 
         <TextView
             android:id="@+id/myLocation"

@@ -72,7 +72,7 @@ public class Customer_signin extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    Intent intent = new Intent(Customer_signin.this, Application_main.class);
+                    Intent intent = new Intent(Customer_signin.this, CustomerCreatePost.class);
                     startActivity(intent);
                     finish();
                 } else {

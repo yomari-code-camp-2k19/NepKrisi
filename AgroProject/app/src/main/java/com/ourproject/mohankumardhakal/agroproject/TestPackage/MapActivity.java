@@ -1,5 +1,4 @@
 package com.ourproject.mohankumardhakal.agroproject.TestPackage;
-
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
@@ -27,7 +26,6 @@ import com.ourproject.mohankumardhakal.agroproject.R;
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
-
 public class MapActivity extends AppCompatActivity implements LocationListener {
     protected LocationManager locationManager;
     TextView currentPlace;
@@ -45,16 +43,7 @@ public class MapActivity extends AppCompatActivity implements LocationListener {
         distance = findViewById(R.id.distance);
         //checks if permission isn't granted
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            /* TODO: Consider calling
-                ActivityCompat#requestPermissions
-             here to request the missing permissions, and then overriding
-               public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                                                      int[] grantResults)
-             to handle the case where the user grants the permission. See the documentation
-             for ActivityCompat#requestPermissions for more details.
-           */
-            //#take permission if not granted
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+           ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
         } else {
             //if permission is already granted
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, MapActivity.this);
@@ -89,6 +78,7 @@ public class MapActivity extends AppCompatActivity implements LocationListener {
 
     @Override
     public void onLocationChanged(Location location) {
+    Log.i("location", String.valueOf(location.getLatitude()));
         String mylocation = getCurrentLocationName(location.getLatitude(), location.getLongitude());
         currentPlace.setText(mylocation);
         setLatLong(location.getLatitude(), location.getLongitude(), 1, mylocation);

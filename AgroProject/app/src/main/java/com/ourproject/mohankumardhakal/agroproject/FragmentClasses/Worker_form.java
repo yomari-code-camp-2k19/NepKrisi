@@ -1,12 +1,8 @@
 package com.ourproject.mohankumardhakal.agroproject.FragmentClasses;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,12 +13,8 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.ourproject.mohankumardhakal.agroproject.AcitivityClasses.Farmer_login;
-import com.ourproject.mohankumardhakal.agroproject.AcitivityClasses.Farmer_profile_form;
-import com.ourproject.mohankumardhakal.agroproject.HelperClasses.FarmerInfo;
 import com.ourproject.mohankumardhakal.agroproject.HelperClasses.WorkerInfo;
 import com.ourproject.mohankumardhakal.agroproject.R;
 
@@ -38,10 +30,7 @@ public class Worker_form extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Log.i("Loaded", "Fragment Loaded");
-        return inflater.inflate(R.layout.add_worker_form, null);
-    }
-        /*
+        View view = inflater.inflate(R.layout.add_worker_form,null);
 
         worker_name=view.findViewById(R.id.worker_name);
         cont_no=view.findViewById(R.id.contact_no);
@@ -98,6 +87,5 @@ public class Worker_form extends Fragment {
             }
         }
 
-*/
 
 }

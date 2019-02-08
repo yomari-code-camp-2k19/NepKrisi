@@ -1,5 +1,4 @@
 package com.ourproject.mohankumardhakal.agroproject.AcitivityClasses;
-
 import android.Manifest;
 import android.app.Dialog;
 import android.content.Context;
@@ -18,6 +17,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -26,11 +26,9 @@ import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.ourproject.mohankumardhakal.agroproject.FragmentClasses.CustomerPostsFrame;
 import com.ourproject.mohankumardhakal.agroproject.FragmentClasses.FarmersPostFrame;
-import com.ourproject.mohankumardhakal.agroproject.FragmentClasses.PieSupplyChartFragment;
-import com.ourproject.mohankumardhakal.agroproject.FragmentClasses.TestFragment;
 import com.ourproject.mohankumardhakal.agroproject.R;
-
 public class Application_main extends AppCompatActivity implements LocationListener {
     ViewPager pager;
     TextView tv1, tv2;
@@ -39,39 +37,14 @@ public class Application_main extends AppCompatActivity implements LocationListe
     FirebaseAuth firebaseAuth;
     protected LocationManager locationManager;
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.logout_menu, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        //logging out the user from main activity
-        switch (id) {
-            case R.id.menu:
-                firebaseAuth = FirebaseAuth.getInstance();
-                FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
-                firebaseAuth.signOut();
-                Intent intent = new Intent(this, Customer_signin.class);
-                user_id = firebaseUser.getUid();
-                intent.putExtra("uid", user_id);
-                startActivity(intent);
-                finish();
-        }
-        return super.onOptionsItemSelected(item);
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.application_main);
         pager = findViewById(R.id.container);
-//        firebaseAuth = FirebaseAuth.getInstance();
-//        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
-
-
+        firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
         locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
         //getting the current location of the user
         //checks if permission isn't granted
@@ -154,7 +127,6 @@ public class Application_main extends AppCompatActivity implements LocationListe
     //viewpageadapter inner class to hold different fragment
     private class ViewPagerAdapter extends FragmentPagerAdapter {
 
-
         public ViewPagerAdapter(FragmentManager supportFragmentManager) {
             super(supportFragmentManager);
         }
@@ -166,10 +138,8 @@ public class Application_main extends AppCompatActivity implements LocationListe
                 farmersPostFrame.setArguments(sendDatatoFragment(lattitude, longitude));
                 return farmersPostFrame;
             } else {
-                PieSupplyChartFragment pieSupplyChartFragment= new PieSupplyChartFragment();
-//                CustomerRequestManager customerRequestManager = new CustomerRequestManager();
-//                customerPostsFrame.setArguments(sendDatatoFragment(lattitude, longitude));
-                return pieSupplyChartFragment;
+                CustomerPostsFrame customerPostsFrame = new CustomerPostsFrame();
+                return customerPostsFrame;
             }
         }
 
@@ -198,4 +168,28 @@ public class Application_main extends AppCompatActivity implements LocationListe
             }
         }
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.logout_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        //logging out the user from main activity
+        switch (id) {
+            case R.id.menu:
+                firebaseAuth = FirebaseAuth.getInstance();
+                FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+                firebaseAuth.signOut();
+                Intent intent = new Intent(this, Customer_signin.class);
+                user_id = firebaseUser.getUid();
+                intent.putExtra("uid", user_id);
+                startActivity(intent);
+                finish();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 }

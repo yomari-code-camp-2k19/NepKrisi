@@ -16,7 +16,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.ourproject.mohankumardhakal.agroproject.HelperClasses.FarmerInfo;
 import com.ourproject.mohankumardhakal.agroproject.R;
-
 public class Farmer_profile_form extends AppCompatActivity {
 
     FirebaseDatabase mFirebaseDatabase;
@@ -64,7 +63,6 @@ public class Farmer_profile_form extends AppCompatActivity {
         String phone_no = phoneno.getText().toString();
         String location_farm = location.getText().toString();
         String about_farm = aboutfarm.getText().toString();
-
 
         if (first_name == "" || last_name == "" || user_name == "" || pan_no == "" || phone_no == "" || location_farm == "" || about_farm == "") {
             Toast.makeText(getApplication(), "Please fill all the fields.", Toast.LENGTH_SHORT).show();

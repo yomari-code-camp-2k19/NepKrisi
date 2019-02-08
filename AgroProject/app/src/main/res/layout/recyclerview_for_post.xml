@@ -2,19 +2,27 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/refesher"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <android.support.v7.widget.CardView
+            app:cardCornerRadius="10dp"
+            android:elevation="10dp"
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
         <android.support.v7.widget.RecyclerView
             android:layout_gravity="center"
             android:layout_margin="10dp"
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
         </android.support.v7.widget.RecyclerView>
+        </android.support.v7.widget.CardView>
     </android.support.v4.widget.SwipeRefreshLayout>
 
 </LinearLayout>

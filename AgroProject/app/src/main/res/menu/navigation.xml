@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/table"
+        android:icon="@drawable/ic_home"
+        android:title="Profile" />
+
+    <item
+        android:id="@+id/livescore"
+        android:icon="@drawable/ic_menu_manage"
+        android:title="History" />
+
+    <item
+        android:id="@+id/stats"
+        android:icon="@drawable/ic_menu_slideshow"
+        android:title="" />
+</menu>

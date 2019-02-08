@@ -39,7 +39,7 @@ public class FarmersPostFrame extends Fragment implements LocationListener {
     DatabaseReference dbRef;
     ArrayList<PostsAttributes> list;
     protected LocationManager locationManager;
-    private double lattitude, longitude;
+    static double lattitude, longitude;
     SwipeRefreshLayout refresher;
     View view;
     String user_id;
@@ -67,14 +67,14 @@ public class FarmersPostFrame extends Fragment implements LocationListener {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
 
-                    for (DataSnapshot ds1 : dataSnapshot.getChildren()) {
-                        for (DataSnapshot ds2 : ds1.getChildren()) {
-                            PostsAttributes postsAttributes = ds2.getValue(PostsAttributes.class);
-                            postsAttributes.setCurrent_lat(lattitude);
-                            postsAttributes.setCurrent_long(longitude);
-                            list.add(postsAttributes);
-                        }
+                for (DataSnapshot ds1 : dataSnapshot.getChildren()) {
+                    for (DataSnapshot ds2 : ds1.getChildren()) {
+                        PostsAttributes postsAttributes = ds2.getValue(PostsAttributes.class);
+                        postsAttributes.setCurrent_lat(lattitude);
+                        postsAttributes.setCurrent_long(longitude);
+                        list.add(postsAttributes);
                     }
+                }
                 mAdapter = new PostAdapters(getActivity(), list, 0);
                 recyclerView.setAdapter(mAdapter);
             }
@@ -107,7 +107,7 @@ public class FarmersPostFrame extends Fragment implements LocationListener {
         return view;
     }
 
-    private void clearRecyclerVIew() {
+    public void clearRecyclerVIew() {
         list.clear();
         mAdapter = new PostAdapters(getContext(), list, 0);
         recyclerView.setAdapter(mAdapter);
@@ -152,7 +152,6 @@ public class FarmersPostFrame extends Fragment implements LocationListener {
         this.lattitude = location.getLatitude();
         this.longitude = location.getLongitude();
     }
-
     @Override
     public void onStatusChanged(String provider, int status, Bundle extras) {
 

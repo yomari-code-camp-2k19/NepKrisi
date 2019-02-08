@@ -19,6 +19,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.ourproject.mohankumardhakal.agroproject.FragmentClasses.FarmersPostFrame;
 import com.ourproject.mohankumardhakal.agroproject.R;
 import static android.content.ContentValues.TAG;
 public class Farmer_login extends Activity {
@@ -90,7 +91,7 @@ public class Farmer_login extends Activity {
                                 String fname = postSnapshot.child("farm_name").getValue(String.class);
                                 farm_name_s = farmname.getText().toString();
                                 if (fname.equals(farm_name_s)) {
-                                    Intent myIntent = new Intent(Farmer_login.this, GraphActivity.class);
+                                    Intent myIntent = new Intent(Farmer_login.this, FarmersCreatePost.class);
                                     startActivity(myIntent);
                                     finish();
                                     break;

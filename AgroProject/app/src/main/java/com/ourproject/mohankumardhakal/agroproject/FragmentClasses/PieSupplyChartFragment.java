@@ -1,5 +1,4 @@
 package com.ourproject.mohankumardhakal.agroproject.FragmentClasses;
-
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -33,7 +32,6 @@ import com.ourproject.mohankumardhakal.agroproject.R;
 
 import java.util.ArrayList;
 import java.util.List;
-
 public class PieSupplyChartFragment extends Fragment implements AdapterView.OnItemSelectedListener {
     PieChart pieChart;
     FirebaseDatabase database;
@@ -51,6 +49,20 @@ public class PieSupplyChartFragment extends Fragment implements AdapterView.OnIt
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.graph_layout, null);
+        product_titlelist = new ArrayList<>();
+        spinner = view.findViewById(R.id.myspinner);
+        spinner.setOnItemSelectedListener(this);
+        productCounts = new ArrayList<>();
+        palceNames = new ArrayList<>();
+        list = new ArrayList<>();
+        //setting spinner
+        productTitleCollection();
+        //radius of the transparent circle above hole
+        // Read from the database
+        return view;
+    }
+
+    public void plotChart() {
         pieChart = view.findViewById(R.id.pieChart);
         pieChart.setUsePercentValues(true);
         pieChart.getDescription().setEnabled(false);
@@ -59,34 +71,11 @@ public class PieSupplyChartFragment extends Fragment implements AdapterView.OnIt
         pieChart.setDrawHoleEnabled(true);
         pieChart.setHoleColor(Color.WHITE);
         pieChart.setCenterText(generateCenterSpannableText());
-        product_titlelist = new ArrayList<>();
-        spinner = view.findViewById(R.id.myspinner);
-        spinner.setOnItemSelectedListener(this);
-
-        productCounts = new ArrayList<>();
-        palceNames = new ArrayList<>();
-        list = new ArrayList<>();
-        //setting spinner
-        productTitleCollection();
-        int sum = 0;
-        for (int a : productCounts) {
-            sum += a;
-        }
-        for (int b : productCounts) {
-            calculatePercentage(b, sum);
-        }
-        Log.i("total", String.valueOf(sum));
-        //radius of the transparent circle above hole
         pieChart.setTransparentCircleRadius(61f);
         List<PieEntry> entries = new ArrayList<>();
-        entries.add(new PieEntry(18f, palceNames.get(0)));
-        entries.add(new PieEntry(16f, "Kaski"));
-        entries.add(new PieEntry(24f, "Kathmandu"));
-        entries.add(new PieEntry(12f, "Humla"));
-        entries.add(new PieEntry(10f, "Janakpur"));
-        entries.add(new PieEntry(12f, "Butwal"));
-        entries.add(new PieEntry(5f, "Dolakha"));
-        entries.add(new PieEntry(3f, "Manag"));
+        for (int i = 0; i < 5; i++) {
+            entries.add(new PieEntry(this.productCounts.get(i), this.palceNames.get(i)));
+        }
         PieDataSet set = new PieDataSet(entries, "High Supply");
         // entry label styling
         pieChart.setEntryLabelColor(Color.BLACK);
@@ -112,8 +101,7 @@ public class PieSupplyChartFragment extends Fragment implements AdapterView.OnIt
         data.setValueTextColor(Color.BLACK);
         pieChart.setData(data);
         pieChart.invalidate();
-        // Read from the database
-        return view;
+
     }
 
     public void countItemNumbers(final String name) {
@@ -150,20 +138,26 @@ public class PieSupplyChartFragment extends Fragment implements AdapterView.OnIt
                 minIndex = 0;
                 int[] indexArray = new int[5];
                 int[] tempvalues = new int[5];
-                for (int i = 0; i < countlist.size(); i++) {
-                    for (int j = 0; j < 5; j++) {
-                        if (countlist.get(i) >= tempvalues[j]) {
-                            indexArray[j] = i;
-                            tempvalues[j] = countlist.get(i);
-                            break;
+                for (int i = 0; i < locationslist.size(); i++) {
+                    if(countlist.get(i)>=tempvalues[minIndex]) {
+                        indexArray[minIndex]=i;
+                        tempvalues[minIndex]=countlist.get(i);
+                        int min=tempvalues[0];
+                        minIndex=0;
+                        for(int j=0;j<5;j++) {
+                            if(tempvalues[j]<min) {
+                                min=tempvalues[j];
+                                minIndex=j;
+                            }
                         }
+
                     }
                 }
                 for (int i = 0; i < 5; i++) {
-                    Log.i("Counts: ", locationslist.get(indexArray[i]) + tempvalues[i]);
                     productCounts.add(tempvalues[i]);
                     palceNames.add(locationslist.get(indexArray[i]));
                 }
+                numberAnalysis(productCounts);
             }
 
             @Override
@@ -210,6 +204,18 @@ public class PieSupplyChartFragment extends Fragment implements AdapterView.OnIt
 
             }
         });
+    }
+
+    public void numberAnalysis(ArrayList<Integer> productCounts) {
+        int sum = 0;
+        for (int a : productCounts) {
+            sum += a;
+        }
+        for (int i = 0; i < productCounts.size(); i++) {
+            this.productCounts.set(i, (int) calculatePercentage(productCounts.get(i), sum));
+            Log.i("productCounts", String.valueOf(this.productCounts.get(i)));
+        }
+        plotChart();
 
     }
 

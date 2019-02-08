@@ -7,9 +7,9 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,6 +39,7 @@ import java.util.Random;
 
 public class FarmersCreatePost extends AppCompatActivity {
     TextView mylocation, title, description;
+    EditText postedBy;
     ImageButton imageButton;
     Button sendbtn;
     //    String title_value, desc_value, location;
@@ -63,6 +64,7 @@ public class FarmersCreatePost extends AppCompatActivity {
         description = findViewById(R.id.textDesc);
         progressDialog = new ProgressDialog(this);
         sendbtn = findViewById(R.id.postBtn);
+        postedBy = findViewById(R.id.postedBy);
         //firebase initialization
         firebaseAuth = FirebaseAuth.getInstance();
         email_value = firebaseAuth.getCurrentUser().getEmail();
@@ -183,27 +185,31 @@ public class FarmersCreatePost extends AppCompatActivity {
     //sends data to real time database including imageurl from storage
     public void sendDatatorealTimeDB(Uri downloaduri) {
         user_id = firebaseAuth.getCurrentUser().getUid();
-        Log.i("Current user id", user_id);
         String post_id = dbRef.push().getKey();
         String title_value = title.getText().toString();
         String desc_value = description.getText().toString();
         String location = mylocation.getText().toString();
-        //using helper class  to insert every posts
-        PostsAttributes postsAttributes = new PostsAttributes(user_id, post_id, title_value, desc_value, location, getDate(), downloaduri.toString(), lattitude, longitude, email_value);
-        dbRef.child(user_id).child(post_id).setValue(postsAttributes).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if (task.isSuccessful()) {
-                    progressDialog.dismiss();
-                    Intent intent = new Intent(FarmersCreatePost.this, Application_main.class);
-                    intent.putExtra("user_id", user_id);
-                    startActivity(intent);
-                    finish();
-                } else
-                    Toast.makeText(FarmersCreatePost.this, "Error" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-
-            }
-        });
+        String name=postedBy.getText().toString();
+        if (!TextUtils.isEmpty(desc_value) && !TextUtils.isEmpty(title_value)) {
+            //using helper class  to insert every posts
+            PostsAttributes postsAttributes = new PostsAttributes(user_id, post_id, title_value, desc_value, location, getDate(), downloaduri.toString(), lattitude, longitude, email_value,name);
+            dbRef.child(user_id).child(post_id).setValue(postsAttributes).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if (task.isSuccessful()) {
+                        progressDialog.dismiss();
+                        Intent intent = new Intent(FarmersCreatePost.this, Application_main.class);
+                        intent.putExtra("user_id", user_id);
+                        startActivity(intent);
+                        finish();
+                    } else {
+                        Toast.makeText(FarmersCreatePost.this, "Error" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        } else {
+            Toast.makeText(this, "Please title and description", Toast.LENGTH_SHORT).show();
+        }
     }
 
     //returns the current date

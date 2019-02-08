@@ -9,6 +9,36 @@ public class PostsAttributes {
     String post_description;
     String post_location;
     String email_value;
+    String phone_number;
+    //customer
+    String customer_name;
+    //farmer
+    String postedBY;
+
+    public String getPostedBY() {
+        return postedBY;
+    }
+
+    public void setPostedBY(String postedBY) {
+        this.postedBY = postedBY;
+    }
+
+
+    public String getCustomer_name() {
+        return customer_name;
+    }
+
+    public void setCustomer_name(String customer_name) {
+        this.customer_name = customer_name;
+    }
+
+    public String getPhone_number() {
+        return phone_number;
+    }
+
+    public void setPhone_number(String phone_number) {
+        this.phone_number = phone_number;
+    }
 
 
     public String getEmail_value() {
@@ -73,18 +103,22 @@ public class PostsAttributes {
     }
 
     //for customer
-    public PostsAttributes(String user_id, String post_id, String post_title, String post_description, String post_location, String date, String email_value) {
+    public PostsAttributes(double lat,double longi ,String user_id, String post_id, String post_title, String post_description, String post_location, String date, String email_value, String phone_number, String name) {
         this.post_id = post_id;
         this.user_id = user_id;
+        this.lattitude=lat;
+        this.longitude=longi;
         this.post_title = post_title;
         this.post_description = post_description;
         this.post_location = post_location;
         this.email_value = email_value;
+        this.phone_number = phone_number;
+        this.customer_name = name;
         this.date = date;
     }
 
     //for farmers value
-    public PostsAttributes(String user_id, String post_id, String title_value, String desc_value, String location, String date, String imageUri, double lattitude, double longitude, String email_value) {
+    public PostsAttributes(String user_id, String post_id, String title_value, String desc_value, String location, String date, String imageUri, double lattitude, double longitude, String email_value,String postedBY) {
         this.imageUri = imageUri;
         this.post_id = post_id;
         this.date = date;
@@ -95,6 +129,7 @@ public class PostsAttributes {
         this.lattitude = lattitude;
         this.longitude = longitude;
         this.email_value = email_value;
+        this.postedBY=postedBY;
     }
 
 

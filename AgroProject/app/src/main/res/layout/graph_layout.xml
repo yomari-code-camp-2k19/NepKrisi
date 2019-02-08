@@ -8,8 +8,6 @@
         android:id="@+id/myspinner"
         android:layout_width="200dp"
         android:layout_height="50dp">
-
-
     </Spinner>
 
     <com.github.mikephil.charting.charts.PieChart

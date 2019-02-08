@@ -5,6 +5,9 @@ public class CustomerRequests {
     String qty_value;
     String title;
     String user_id;
+    String location;
+    String device_token;
+    String post_id;
 
     public String getLocation() {
         return location;
@@ -14,8 +17,6 @@ public class CustomerRequests {
         this.location = location;
     }
 
-    String location;
-
     public String getPost_id() {
         return post_id;
     }
@@ -23,9 +24,6 @@ public class CustomerRequests {
     public void setPost_id(String post_id) {
         this.post_id = post_id;
     }
-
-    String post_id;
-
 
     public String getDevice_token() {
 
@@ -35,8 +33,6 @@ public class CustomerRequests {
     public void setDevice_token(String device_token) {
         this.device_token = device_token;
     }
-
-    String device_token;
 
     public String getTitle() {
         return title;

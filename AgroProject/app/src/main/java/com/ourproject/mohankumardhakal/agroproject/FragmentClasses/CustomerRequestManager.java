@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -19,7 +20,6 @@ import com.ourproject.mohankumardhakal.agroproject.HelperClasses.RequestAdapter;
 import com.ourproject.mohankumardhakal.agroproject.R;
 
 import java.util.ArrayList;
-
 public class CustomerRequestManager extends Fragment {
     FirebaseAuth firebaseAuth;
     FirebaseDatabase firebaseDatabase;
@@ -61,6 +61,9 @@ public class CustomerRequestManager extends Fragment {
                 if (arrayList!=null) {
                     mAdapter = new RequestAdapter(getContext(), arrayList);
                     recyclerView.setAdapter(mAdapter);
+                }
+                else {
+                    Toast.makeText(getContext(), "No data in arraylist", Toast.LENGTH_SHORT).show();
                 }
 
             }

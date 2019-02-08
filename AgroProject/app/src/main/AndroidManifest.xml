@@ -2,12 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.ourproject.mohankumardhakal.agroproject">
 
-    <!--
-         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
-         Google Maps Android API v2, but you must specify either coarse or fine
-         location permissions for the 'MyLocation' functionality.
-    -->
+    <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -17,9 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AcitivityClasses.Application_main">
-
-        </activity>
+        <activity android:name=".AcitivityClasses.Application_main" />
         <activity android:name=".AcitivityClasses.GraphActivity" />
         <activity android:name=".TestPackage.MapActivity" />
         <!--
@@ -37,26 +32,31 @@
         <activity
             android:name=".TestPackage.MapsActivity"
             android:label="@string/title_activity_maps" />
-        <activity android:name=".AcitivityClasses.Farmer_login">
-
-        </activity>
+        <activity android:name=".AcitivityClasses.Farmer_login" />
         <activity android:name=".AcitivityClasses.Register_farmer" />
         <activity android:name=".AcitivityClasses.Farmer_profile_form" />
         <activity android:name=".AcitivityClasses.Customer_signin">
+
+        </activity>
+        <activity android:name=".AcitivityClasses.BottomNavigation"></activity>
+        <activity android:name=".AcitivityClasses.Register_customer" />
+        <activity android:name=".AcitivityClasses.FarmersCreatePost" />
+        <activity android:name=".AcitivityClasses.CustomerCreatePost" />
+        <activity android:name=".AcitivityClasses.FarmersProfile" />
+        <activity android:name=".AcitivityClasses.MainActivity">
+           </activity>
+        <activity
+            android:name=".AcitivityClasses.HomeActivity"
+            android:label="@string/title_activity_home"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity android:name=".AcitivityClasses.Register_customer" />
-        <activity android:name=".AcitivityClasses.FarmersCreatePost" />
-        <activity android:name=".AcitivityClasses.CustomerCreatePost" />
-        <activity android:name=".AcitivityClasses.FarmersProfile"></activity>
 
-        <service android:name=".TestPackage.MyFirebaseMessagingService">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-            </intent-filter>
-        </service>
+        </activity>
+        <activity android:name=".AcitivityClasses.SplashActivity">
+
+        </activity>
     </application>
 </manifest>

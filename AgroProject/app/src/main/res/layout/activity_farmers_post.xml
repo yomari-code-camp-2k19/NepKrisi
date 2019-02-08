@@ -39,6 +39,17 @@
             android:src="@mipmap/add_image" />
 
         <EditText
+            android:id="@+id/postedBy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/edit_text_style"
+            android:hint="Farm Name"
+            android:padding="10dp" />
+
+        <EditText
             android:id="@+id/textTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -64,16 +75,16 @@
             android:textSize="20sp" />
 
         <TextView
+            android:id="@+id/myLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_marginTop="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Your Selected Location"
-            android:id="@+id/myLocation"
             android:background="@drawable/edit_text_style"
             android:drawableLeft="@drawable/ic_add_location_black_24dp"
             android:elevation="40dp"
+            android:hint="Your Selected Location"
             android:padding="10dp"
             android:textSize="20sp" />
 

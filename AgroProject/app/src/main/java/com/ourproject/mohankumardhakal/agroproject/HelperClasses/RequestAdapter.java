@@ -39,10 +39,9 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.MyViewHo
         customerRequests = post_information_list.get(position);
         if (customerRequests != null) {
             holder.name.setText(customerRequests.getName_value());
-            Log.i("name", customerRequests.getName_value());
             holder.contact.setText(customerRequests.getContact_value());
+            holder.location.setText(customerRequests.getLocation());
 //            Log.i("location", customerRequests.getLocation());
-//            holder.location.setText(customerRequests.getLocation());
         }
         holder.call.setOnClickListener(new View.OnClickListener() {
             @Override

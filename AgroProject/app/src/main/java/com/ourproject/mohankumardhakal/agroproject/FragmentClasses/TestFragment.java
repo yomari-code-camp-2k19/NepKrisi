@@ -38,7 +38,7 @@ public class TestFragment extends Fragment implements AdapterView.OnItemSelected
         product_titlelist = new ArrayList<>();
         spinner = view.findViewById(R.id.spinner1);
         spinner.setOnItemSelectedListener(this);
-        getData();
+//        getData();
         return view;
     }
 

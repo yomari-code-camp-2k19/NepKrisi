@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/news_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp"
+                android:text="List of agricultural websites"
+                android:textColor="#18237E"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/doa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp"
+                android:text="Department of Agriculture"
+                android:textColor="#1B5E20"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/nature_khabar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp"
+                android:text="Nature Khabar"
+                android:textColor="#1B5E20"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/news_agro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp"
+                android:text="NewsAgro"
+                android:textColor="#1B5E20"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/ncf"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp"
+                android:text="Nepal City Farmers"
+                android:textColor="#1B5E20"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/ain"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp"
+                android:text="Agriculture Info Nepal"
+                android:textColor="#1B5E20"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/fao"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp"
+                android:text="Food and Agriculture Organization"
+                android:textColor="#1B5E20"
+                android:textSize="17sp" />
+
+
+        </LinearLayout>
+    </ScrollView>
+
+    <WebView
+        android:id="@+id/web_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="invisible"></WebView>
+
+</RelativeLayout>

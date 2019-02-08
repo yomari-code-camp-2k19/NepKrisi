@@ -1,5 +1,4 @@
 package com.ourproject.mohankumardhakal.agroproject.FragmentClasses;
-
 import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -30,6 +29,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+
 public class Worker_data extends Fragment {
     ExpandableListView expandableListView;
     ListViewAdapter customExpandableListViewAdapter;
@@ -37,7 +37,7 @@ public class Worker_data extends Fragment {
     List<String> listDataHeader;
     HashMap<String, List<String>> listDataChild;
 
-   FirebaseDatabase  database;
+    FirebaseDatabase  database;
     DatabaseReference myRef;
 
     TextView add;
@@ -79,20 +79,19 @@ public class Worker_data extends Fragment {
 
     public void worker_form()
     {
-        Log.e("TAG", "Inside the worker form " );
-        final Dialog dialog = new Dialog(getContext());
-        dialog.setContentView(R.layout.add_worker_form);
+         final Dialog dialog = new Dialog(getContext(),R.style.Dialog);
+        View view=LayoutInflater.from(getContext()).inflate(R.layout.add_worker_form, null);
+        dialog.setContentView(view);
         dialog.setTitle("Worker Form");
 
         //actions to be performed within the form
 
-        worker_name=dialog.findViewById(R.id.worker_name);
-        cont_no=dialog.findViewById(R.id.contact_no);
-        addr=dialog.findViewById(R.id.address);
-        start_date=dialog.findViewById(R.id.start_date);
-        salary=dialog.findViewById(R.id.salary);
-
-        submit=dialog.findViewById(R.id.add_worker);
+        worker_name=view.findViewById(R.id.worker_name);
+        cont_no=view.findViewById(R.id.contact_no);
+        addr=view.findViewById(R.id.address);
+        start_date=view.findViewById(R.id.start_date);
+        salary=view.findViewById(R.id.salary);
+        submit=view.findViewById(R.id.add_worker);
 
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference("Worker");
@@ -191,8 +190,6 @@ public class Worker_data extends Fragment {
 
             }
         });
-
-
 
     }
 }

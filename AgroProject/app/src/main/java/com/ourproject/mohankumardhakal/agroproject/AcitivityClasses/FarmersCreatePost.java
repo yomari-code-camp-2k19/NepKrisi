@@ -198,7 +198,7 @@ public class FarmersCreatePost extends AppCompatActivity {
                 public void onComplete(@NonNull Task<Void> task) {
                     if (task.isSuccessful()) {
                         progressDialog.dismiss();
-                        Intent intent = new Intent(FarmersCreatePost.this, Application_main.class);
+                        Intent intent = new Intent(FarmersCreatePost.this, HomeActivity.class);
                         intent.putExtra("user_id", user_id);
                         startActivity(intent);
                         finish();

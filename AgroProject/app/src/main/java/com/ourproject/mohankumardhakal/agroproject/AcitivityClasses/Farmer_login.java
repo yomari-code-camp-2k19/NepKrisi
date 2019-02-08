@@ -41,13 +41,11 @@ public class Farmer_login extends Activity {
         email = findViewById(R.id.email);
         farmname = findViewById(R.id.farm_name);
         password = findViewById(R.id.password);
-
         login.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 check(view);
             }
         });
-
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -91,7 +89,7 @@ public class Farmer_login extends Activity {
                                 String fname = postSnapshot.child("farm_name").getValue(String.class);
                                 farm_name_s = farmname.getText().toString();
                                 if (fname.equals(farm_name_s)) {
-                                    Intent myIntent = new Intent(Farmer_login.this, FarmersCreatePost.class);
+                                    Intent myIntent = new Intent(Farmer_login.this, HomeActivity.class);
                                     startActivity(myIntent);
                                     finish();
                                     break;

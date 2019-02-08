@@ -68,6 +68,7 @@ public class Register_customer extends AppCompatActivity {
                     startActivityForResult(myIntent, 0);
 
                 } else {
+                    progressDialog.dismiss();
                     Toast.makeText(getApplication(), "Failed to register, please try again later", Toast.LENGTH_SHORT).show();
                 }
             }

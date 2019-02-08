@@ -17,6 +17,7 @@
         <activity android:name=".AcitivityClasses.Application_main" />
         <activity android:name=".AcitivityClasses.GraphActivity" />
         <activity android:name=".TestPackage.MapActivity" />
+
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -38,21 +39,28 @@
         <activity android:name=".AcitivityClasses.Customer_signin">
 
         </activity>
-        <activity android:name=".AcitivityClasses.BottomNavigation"></activity>
+
+        <activity android:name=".AcitivityClasses.BottomNavigation"
+            android:parentActivityName=".AcitivityClasses.HomeActivity">
+
+        </activity>
         <activity android:name=".AcitivityClasses.Register_customer" />
         <activity android:name=".AcitivityClasses.FarmersCreatePost" />
         <activity android:name=".AcitivityClasses.CustomerCreatePost" />
         <activity android:name=".AcitivityClasses.FarmersProfile" />
         <activity android:name=".AcitivityClasses.MainActivity">
-           </activity>
-        <activity
-            android:name=".AcitivityClasses.HomeActivity"
-            android:label="@string/title_activity_home"
-            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".AcitivityClasses.News_activity"
+            android:parentActivityName=".AcitivityClasses.HomeActivity" />
+        <activity
+            android:name=".AcitivityClasses.HomeActivity"
+            android:label="@string/title_activity_home"
+            android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
         <activity android:name=".AcitivityClasses.SplashActivity">

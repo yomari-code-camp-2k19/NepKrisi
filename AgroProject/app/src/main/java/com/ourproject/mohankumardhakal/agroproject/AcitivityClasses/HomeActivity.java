@@ -22,6 +22,8 @@ import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.ourproject.mohankumardhakal.agroproject.FragmentClasses.CustomerPostsFrame;
 import com.ourproject.mohankumardhakal.agroproject.FragmentClasses.FarmersPostFrame;
 import com.ourproject.mohankumardhakal.agroproject.FragmentClasses.PieDemandChartFragment;
@@ -37,11 +39,10 @@ public class HomeActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_home);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        firebaseAuth = FirebaseAuth.getInstance();
-        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
         pager = findViewById(R.id.containerview);
         tv1 = findViewById(R.id.tab1);
         tv2 = findViewById(R.id.tab2);
@@ -132,10 +133,26 @@ public class HomeActivity extends AppCompatActivity
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             firebaseAuth = FirebaseAuth.getInstance();
-            firebaseAuth.signOut();
-            Intent intent = new Intent(HomeActivity.this, Customer_signin.class);
-            startActivity(intent);
-            finish();
+            FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+
+            if (firebaseUser != null) {
+                FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+                final DatabaseReference databaseReference = firebaseDatabase.getReference("User Info");
+                if (databaseReference.child(firebaseUser.getUid()) != null) {
+                    firebaseAuth = FirebaseAuth.getInstance();
+                    firebaseAuth.signOut();
+                    startActivity(new Intent(HomeActivity.this, Farmer_login.class));
+                    finish();
+                } else {
+                    firebaseAuth = FirebaseAuth.getInstance();
+                    firebaseAuth.signOut();
+                    startActivity(new Intent(HomeActivity.this, Customer_signin.class));
+                    finish();
+                }
+
+            }
+
+
         }
 
         return super.onOptionsItemSelected(item);
@@ -151,6 +168,21 @@ public class HomeActivity extends AppCompatActivity
             startActivity(new Intent(HomeActivity.this, BottomNavigation.class));
 //            finish();
         } else if (id == R.id.nav_gallery) {
+            startActivity(new Intent(HomeActivity.this, News_activity.class));
+
+        } else if (id == R.id.nav_slideshow) {
+            firebaseAuth = FirebaseAuth.getInstance();
+            FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+            if (firebaseUser != null) {
+                FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+                final DatabaseReference databaseReference = firebaseDatabase.getReference("User Info");
+                if (databaseReference.child(firebaseUser.getUid()) != null) {
+                    startActivity(new Intent(HomeActivity.this, FarmersCreatePost.class));
+                } else {
+                    startActivity(new Intent(HomeActivity.this, CustomerCreatePost.class));
+                }
+
+            }
 
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -185,12 +217,12 @@ public class HomeActivity extends AppCompatActivity
                 CustomerPostsFrame customerPostsFrame = new CustomerPostsFrame();
                 return customerPostsFrame;
             } else if (position == 2) {
-                PieDemandChartFragment pieDemandChartFragment=new PieDemandChartFragment();
+                PieDemandChartFragment pieDemandChartFragment = new PieDemandChartFragment();
                 return pieDemandChartFragment;
 
             } else {
-                PieSupplyChartFragment pieSupplyChartFragment=new PieSupplyChartFragment();
-                return  pieSupplyChartFragment;
+                PieSupplyChartFragment pieSupplyChartFragment = new PieSupplyChartFragment();
+                return pieSupplyChartFragment;
             }
 
         }

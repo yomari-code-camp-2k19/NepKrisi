@@ -1,5 +1,4 @@
 package com.ourproject.mohankumardhakal.agroproject.AcitivityClasses;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,7 +18,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.ourproject.mohankumardhakal.agroproject.R;
-
 public class Register_farmer extends AppCompatActivity {
     EditText emailview, farmname, passwordview;
     Button registerbtn;
@@ -99,6 +97,9 @@ public class Register_farmer extends AppCompatActivity {
                                 Toast.makeText(getApplication(), "Please Enter the password .. null", Toast.LENGTH_SHORT).show();
                             }
 
+                        }else{
+                            Toast.makeText(Register_farmer.this, "User already exists with this email ,please use another account", Toast.LENGTH_LONG).show();
+                            progressDialog.dismiss();
                         }
 
                     }
